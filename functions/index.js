@@ -17,7 +17,7 @@
  * Trivia game fulfillment logic
  */
 
-const HOSTING_URL = 'https://<YOUR_PROJECT_ID>.firebaseapp.com';
+const HOSTING_URL = 'https://expression-assistant.firebaseapp.com';
 
 process.env.DEBUG = 'actions-on-google:*';
 const ApiAiApp = require('actions-on-google').ApiAiApp;
@@ -97,6 +97,7 @@ const QUESTIONS_PER_GAME = 4;
 // Firebase data keys
 const DATABASE_PATH_USERS = 'users/';
 const DATABASE_PATH_DICTIONARY = 'dictionary/';
+const DATABASE_PATH_EXPRESSION_DICTIONARY_CONTENT = 'expression_dictionary';
 const DATABASE_QUESTIONS = 'questions';
 const DATABASE_DATA = 'data';
 const DATABASE_PREVIOUS_QUESTIONS = 'previousQuestions';
@@ -125,6 +126,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
 
   const userId = app.getUser().userId;
   const userIdKey = utils.encodeAsFirebaseKey(userId);
+  let expressionDict = {};
   let questions = [];
   let answers = [];
   let followUps = [];
@@ -289,6 +291,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
           questions = data.val()[DATABASE_QUESTIONS];
           answers = data.val()[DATABASE_ANSWERS];
           followUps = data.val()[DATABASE_FOLLOW_UPS];
+          expressionDict = data.val()[DATABASE_PATH_EXPRESSION_DICTIONARY_CONTENT];
           const selectedQuestions = selectQuestions(questions);
           // Construct the initial response
           if (selectedQuestions) {
@@ -331,6 +334,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
               app.data.questionPrompt = questionPrompt;
               app.data.score = 0;
               app.data.currentQuestion = currentQuestion;
+              app.data.expressionDict = expressionDict;
               app.data.gameLength = gameLength;
               app.data.fallbackCount = 0;
               callback(null);
@@ -516,18 +520,37 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
       // Use two chat bubbles for intro and question
       // Use suggestion chips for answers
       const questionSsmlResponse = new Ssml();
-      if (isTrueFalseQuestion(answers) && question) {
-        app.setContext(TRUE_FALSE_CONTEXT);
-        questionSsmlResponse.say(sprintf(getRandomPrompt(PROMPT_TYPES.TRUE_FALSE_PROMPTS), question));
-        questionSsmlResponse.pause(TTS_DELAY);
-        questionSsmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_DING), 'ding');
-        app.ask(app
-          .buildRichResponse()
-          .addSimpleResponse(ssmlResponse.toString())
-          .addSimpleResponse(questionSsmlResponse.toString())
-          .addSuggestions([utils.TRUE, utils.FALSE]));
-        return;
+      const expressionDict = app.data.expressionDict;
+
+      // NEW ----------------------------
+      questionSsmlResponse.say(question);
+      questionSsmlResponse.pause(TTS_DELAY);
+      questionSsmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_DING), 'ding');
+      const carousel = app.buildCarousel();
+      for (let i = 0; i < answers.length; i++) {
+        let emotion = expressionDict[answers[i]];
+        if (emotion) {
+          carousel.addItems(app.buildOptionItem(emotion['displayName'], [])
+                    .setTitle(emotion['displayName'])
+                    .setDescription(emotion['tone']['text'])
+                    .setImage(emotion['image'], emotion['displayName']));
+        } else {
+          app.tell('There is a problem with the questions.');
+        }
       }
+
+      const richResponse = app.buildRichResponse()
+            .addSimpleResponse(ssmlResponse.toString())
+            .addSimpleResponse(questionSsmlResponse.toString());
+
+      if (carousel) {
+        app.askWithCarousel(richResponse, carousel);
+      } else {
+        app.tell(richResponse);
+      }
+
+      return;
+      // OLD ----------------------------
       const chips = [];
       // Use a list to show the answers if they don't meet the
       // suggestion chips requirements:
@@ -603,6 +626,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
   const nextQuestion = (app, ssmlResponse) => {
     const sessionQuestions = app.data.sessionQuestions;
     const answers = app.data.sessionAnswers;
+    const expressionDict = app.data.expressionDict;
     gameLength = parseInt(app.data.gameLength);
     let currentQuestion = parseInt(app.data.currentQuestion);
     const score = parseInt(app.data.score);
@@ -661,6 +685,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
         app.data.correctAnswer = correctIndex;
         app.data.questionPrompt = questionPrompt;
         app.data.fallbackCount = 0;
+        app.data.expressionDict = expressionDict;
         app.data.currentQuestion = currentQuestion;
         app.data.score = score;
         askQuestion(ssmlResponse, questionPrompt, selectedAnswers);
@@ -1335,7 +1360,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
     }));
 
     let answer = 0;
-    const choice = app.getSelectedOption();
+    const choice = app.getContextArgument('actions_intent_option', 'OPTION').value;
     logger.debug(logObject('trivia', 'listIntent', {
       info: 'User selection from list',
       choice: choice

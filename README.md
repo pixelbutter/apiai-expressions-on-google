@@ -1,8 +1,7 @@
-# Actions on Google: Trivia Game using Node.js
+# Actions on Google: Expressions Game using Node.js (WIP)
 
-The Triva Game let's users play an interactive game with various personas. Includes classic game show sounds and humor, for a touch of nostalgia.
-
-You can also try out a hosted version of this game at [https://triviatemplate.com/](https://triviatemplate.com/).
+Educational game that helps users identify facial expressions.
+Based off of [Google api.ai trivia game](https://github.com/actions-on-google/apiai-trivia-game-nodejs)
 
 ## Setup Instructions
 
@@ -27,19 +26,3 @@ You can also try out a hosted version of this game at [https://triviatemplate.co
 
 For more detailed information on deployment, see the [documentation](https://developers.google.com/actions/samples/).
 
-## References and How to report bugs
-* Actions on Google documentation: [https://developers.google.com/actions/](https://developers.google.com/actions/).
-* If you find any issues, please open a bug here on GitHub.
-* Questions are answered on [StackOverflow](https://stackoverflow.com/questions/tagged/actions-on-google).
-
-## How to make contributions?
-Please read and follow the steps in the [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-See [LICENSE](LICENSE).
-
-## Terms
-Your use of this sample is subject to, and by using or downloading the sample files you agree to comply with, the [Google APIs Terms of Service](https://developers.google.com/terms/).
-
-## Google+
-Actions on Google Developers Community on Google+ [https://g.co/actionsdev](https://g.co/actionsdev).

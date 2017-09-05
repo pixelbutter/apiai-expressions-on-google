@@ -17,12 +17,12 @@
     ],
     [
       "envious",
-      "regretful",
+      "dignity",
       "tired"
     ],
     [
-      "laughing",
       "insecure",
+      "laughing",
       "scared"
     ]
   ],
@@ -33,13 +33,6 @@
     "envious": true,
     "insecure": true
   },
-  "followUps": [
-    "",
-    "",
-    "",
-    "",
-    ""
-  ],
   "questions": [
     "Who best describes the emotion sadness?",
     "Who best describes the emotion annoyed?",
@@ -49,7 +42,7 @@
   ],
   "expression_dictionary": {
     "sad": {
-      "displayName": "sad",
+      "displayName": "Bart",
       "emotionName": "sad",
       "image": "https://i.pinimg.com/236x/db/f5/17/dbf5175cc791abf633839ac1f67ab2f1--sad-simpsons-lisa-simpson.jpg",
       "tone": {
@@ -58,7 +51,7 @@
       }
     },
     "happy": {
-      "displayName": "happy",
+      "displayName": "Milhouse",
       "emotionName": "happy",
       "image": "https://deadhomersociety.files.wordpress.com/2011/11/momandpopart5.png",
       "tone": {
@@ -67,7 +60,7 @@
       }
     },
     "angry": {
-      "displayName": "angry",
+      "displayName": "Lisa",
       "emotionName": "angry",
       "image": "http://www.aveleyman.com/Gallery/ActorsS/tve25371-19910926-696.gif",
       "tone": {
@@ -76,7 +69,7 @@
       }
     },
     "annoyed": {
-      "displayName": "annoyed",
+      "displayName": "Marge",
       "emotionName": "annoyed",
       "image": "https://i.pinimg.com/736x/8c/96/ec/8c96ec52ce2e0ddc26f798dc46012d26--simpsons-marge-fat.jpg",
       "tone": {
@@ -85,7 +78,7 @@
       }
     },
     "disgusted": {
-      "displayName": "disgusted",
+      "displayName": "Homer",
       "emotionName": "disgusted",
       "image": "http://cdn.smosh.com/sites/default/files/2015/03/homer-simpson-kreplach.jpg",
       "tone": {
@@ -94,7 +87,7 @@
       }
     },
     "bored": {
-      "displayName": "bored",
+      "displayName": "Kent",
       "emotionName": "bored",
       "image": "https://i.ytimg.com/vi/SW2dHsSqQx8/hqdefault.jpg",
       "tone": {
@@ -103,7 +96,7 @@
       }
     },
     "surprised": {
-      "displayName": "surprised",
+      "displayName": "Moe",
       "emotionName": "surprised",
       "image": "https://fthmb.tqn.com/tRUeFTGR6dWyc_9PbI_fc4k1VaM=/768x0/filters:no_upscale()/about/moe-szyslak1-57bb34463df78c8763e47ede.jpg",
       "tone": {
@@ -112,7 +105,7 @@
       }
     },
     "worried": {
-      "displayName": "worried",
+      "displayName": "Homer",
       "emotionName": "worried",
       "image": "https://cdn3.whatculture.com/images/2012/10/homer-simpson-jobs.jpg",
       "tone": {
@@ -121,7 +114,7 @@
       }
     },
     "excited": {
-      "displayName": "excited",
+      "displayName": "Flanders",
       "emotionName": "excited",
       "image": "https://media.tenor.com/images/6c4f0016db0cd0cfdf6cf5a079e75713/tenor.gif",
       "tone": {
@@ -130,7 +123,7 @@
       }
     },
     "envious": {
-      "displayName": "envious",
+      "displayName": "Lisa",
       "emotionName": "envious",
       "image": "https://vignette3.wikia.nocookie.net/simpsons/images/6/6d/Jealousy.jpg/revision/latest?cb=20130218151525",
       "tone": {
@@ -138,17 +131,17 @@
         "text": "she isn't so great!"
       }
     },
-    "regretful": {
-      "displayName": "regretful",
-      "emotionName": "regretful",
-      "image": "https://media.giphy.com/media/3orieQanh62ix3GCBO/giphy.gif",
+    "dignity": {
+      "displayName": "Kurt",
+      "emotionName": "dignity",
+      "image": "https://pbs.twimg.com/media/BbYgGp5IcAAtFB5.jpg",
       "tone": {
         "sound": "",
-        "text": "What have i done?"
+        "text": "C'mon, Luann!"
       }
     },
     "tired": {
-      "displayName": "tired",
+      "displayName": "Bart",
       "emotionName": "tired",
       "image": "https://i.pinimg.com/736x/76/55/24/7655241531e4dc6d43de49157a05f8ff--simpsons-quotes-los-simpsons.jpg",
       "tone": {
@@ -157,7 +150,7 @@
       }
     },
     "laughing": {
-      "displayName": "laughing",
+      "displayName": "Bart and Milhouse",
       "emotionName": "laughing",
       "image": "https://i.pinimg.com/736x/5f/dd/30/5fdd3090282e12b0e3c5c95adbddf9a1--los-simpson-simpsons.jpg",
       "tone": {
@@ -166,7 +159,7 @@
       }
     },
     "insecure": {
-      "displayName": "insecure",
+      "displayName": "Lisa",
       "emotionName": "insecure",
       "image": "https://s11.favim.com/orig/160715/cartoons-feminism-films-insecure-Favim.com-4527511.jpeg",
       "tone": {
@@ -175,7 +168,7 @@
       }
     },
     "scared": {
-      "displayName": "scared",
+      "displayName": "Bart and Lisa",
       "emotionName": "scared",
       "image": "https://deadhomersociety.files.wordpress.com/2010/08/43_thumb.jpg?w=400&h=300",
       "tone": {

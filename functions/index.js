@@ -108,7 +108,6 @@ const DATABASE_TOTAL_SCORE = 'totalScore';
 const DATABASE_SCORES = 'scores';
 const DATABASE_VISITS = 'visits';
 const DATABASE_ANSWERS = 'answers';
-const DATABASE_FOLLOW_UPS = 'followUps';
 
 const theme = THEME_TYPES.TRIVIA_TEACHER_THEME;
 const AUDIO_BASE_URL = `${HOSTING_URL}/audio/`;
@@ -129,7 +128,6 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
   let expressionDict = {};
   let questions = [];
   let answers = [];
-  let followUps = [];
   let gameLength = QUESTIONS_PER_GAME;
   let last = false;
   let middle = false;
@@ -290,7 +288,6 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
         if (data && data.val() && data.val()[DATABASE_QUESTIONS]) {
           questions = data.val()[DATABASE_QUESTIONS];
           answers = data.val()[DATABASE_ANSWERS];
-          followUps = data.val()[DATABASE_FOLLOW_UPS];
           expressionDict = data.val()[DATABASE_PATH_EXPRESSION_DICTIONARY_CONTENT];
           const selectedQuestions = selectQuestions(questions);
           // Construct the initial response
@@ -316,21 +313,12 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
               for (let i = 0; i < selectedQuestions.length; i++) {
                 sessionAnswers.push(answers[selectedQuestions[i]]);
               }
-              const sessionFollowUps = [];
-              for (let i = 0; i < selectedQuestions.length; i++) {
-                if (followUps && followUps.length > 0) {
-                  sessionFollowUps.push(followUps[selectedQuestions[i]]);
-                } else {
-                  sessionFollowUps.push('');
-                }
-              }
 
               // Session data for the game logic
               app.data.sessionQuestions = sessionQuestions;
               app.data.selectedAnswers = selectedAnswers;
               app.data.correctAnswer = correctIndex;
               app.data.sessionAnswers = sessionAnswers;
-              app.data.sessionFollowUps = sessionFollowUps;
               app.data.questionPrompt = questionPrompt;
               app.data.score = 0;
               app.data.currentQuestion = currentQuestion;
@@ -530,7 +518,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
       for (let i = 0; i < answers.length; i++) {
         let emotion = expressionDict[answers[i]];
         if (emotion) {
-          carousel.addItems(app.buildOptionItem(emotion['displayName'], [])
+          carousel.addItems(app.buildOptionItem(emotion['emotionName'], [emotion['emotionName']])
                     .setTitle(emotion['displayName'])
                     .setDescription(emotion['tone']['text'])
                     .setImage(emotion['image'], emotion['displayName']));
@@ -704,8 +692,6 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
     }));
 
     const selectedAnswers = app.data.selectedAnswers;
-    const sessionFollowUps = app.data.sessionFollowUps;
-    const currentQuestion = parseInt(app.data.currentQuestion);
     const correctAnswer = parseInt(app.data.correctAnswer);
     gameLength = parseInt(app.data.gameLength);
     let score = parseInt(app.data.score);
@@ -777,9 +763,6 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
         app.data.correct = true;
         ssmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_CORRECT), 'correct');
         ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.RIGHT_ANSWER_PROMPTS_1));
-        if (sessionFollowUps && sessionFollowUps[currentQuestion] && sessionFollowUps[currentQuestion].length > 0) {
-          ssmlResponse.say(sessionFollowUps[currentQuestion]);
-        }
       } else {
         app.data.correct = false;
         ssmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_INCORRECT), 'incorrect');
@@ -788,9 +771,6 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
             sprintf(getRandomPrompt(PROMPT_TYPES.WRONG_ANSWER_PROMPTS_2), synonyms[0])}`);
         } else {
           ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.WRONG_ANSWER_PROMPTS_1));
-        }
-        if (sessionFollowUps && sessionFollowUps[currentQuestion] && sessionFollowUps[currentQuestion].length > 0) {
-          ssmlResponse.say(sessionFollowUps[currentQuestion]);
         }
       }
       app.data.score = score;
@@ -1360,7 +1340,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
     }));
 
     let answer = 0;
-    const choice = app.getContextArgument('actions_intent_option', 'OPTION').value;
+    const choice = app.getSelectedOption();
     logger.debug(logObject('trivia', 'listIntent', {
       info: 'User selection from list',
       choice: choice

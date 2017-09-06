@@ -74,7 +74,7 @@
       "image": "https://i.pinimg.com/736x/8c/96/ec/8c96ec52ce2e0ddc26f798dc46012d26--simpsons-marge-fat.jpg",
       "tone": {
         "sound": "",
-        "text": "Ughh again"
+        "text": "Ugh again?!"
       }
     },
     "disgusted": {
@@ -83,7 +83,7 @@
       "image": "http://cdn.smosh.com/sites/default/files/2015/03/homer-simpson-kreplach.jpg",
       "tone": {
         "sound": "",
-        "text": "Bleh gross"
+        "text": "Bleh gross!"
       }
     },
     "bored": {
@@ -101,16 +101,16 @@
       "image": "https://fthmb.tqn.com/tRUeFTGR6dWyc_9PbI_fc4k1VaM=/768x0/filters:no_upscale()/about/moe-szyslak1-57bb34463df78c8763e47ede.jpg",
       "tone": {
         "sound": "",
-        "text": "surprised"
+        "text": "Whaaaaa?!"
       }
     },
     "worried": {
       "displayName": "Homer",
       "emotionName": "worried",
-      "image": "https://cdn3.whatculture.com/images/2012/10/homer-simpson-jobs.jpg",
+      "image": "http://cdn1us.denofgeek.com/sites/denofgeekus/files/2016/05/sim1.jpg",
       "tone": {
         "sound": "",
-        "text": "what am i going to do?"
+        "text": "what am I going to do?"
       }
     },
     "excited": {
@@ -146,7 +146,7 @@
       "image": "https://i.pinimg.com/736x/76/55/24/7655241531e4dc6d43de49157a05f8ff--simpsons-quotes-los-simpsons.jpg",
       "tone": {
         "sound": "",
-        "text": "zzzzz"
+        "text": "zzzzz..."
       }
     },
     "laughing": {
@@ -155,7 +155,7 @@
       "image": "https://i.pinimg.com/736x/5f/dd/30/5fdd3090282e12b0e3c5c95adbddf9a1--los-simpson-simpsons.jpg",
       "tone": {
         "sound": "",
-        "text": "hahahaha"
+        "text": "hahahaha!"
       }
     },
     "insecure": {
@@ -164,7 +164,7 @@
       "image": "https://s11.favim.com/orig/160715/cartoons-feminism-films-insecure-Favim.com-4527511.jpeg",
       "tone": {
         "sound": "",
-        "text": "this store makes me feel worse about myself"
+        "text": "this store makes me feel worse about myself..."
       }
     },
     "scared": {

@@ -87,6 +87,7 @@ const TRUE_FALSE_CONTEXT = 'true_false';
 const ITEM_INTENT = 'game.choice.item';
 
 const TTS_DELAY = '500ms';
+const TTS_DELAY_LONG = '900ms';
 
 const MAX_PREVIOUS_QUESTIONS = 100;
 const SUGGESTION_CHIPS_MAX_TEXT_LENGTH = 25;
@@ -470,19 +471,24 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
       logger.debug(logObject('trivia', 'askQuestion', {
         info: 'askQuestionAudioOnly'
       }));
-      // Check if true/false question
-      if (isTrueFalseQuestion(answers) && question) {
-        app.setContext(TRUE_FALSE_CONTEXT);
-        ssmlResponse.say(sprintf(getRandomPrompt(PROMPT_TYPES.TRUE_FALSE_PROMPTS), question));
-        ssmlResponse.pause(TTS_DELAY);
-        ssmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_DING), 'ding');
-        app.ask(ssmlResponse.toString(), selectInputPrompts());
-        return;
-      }
+
       if (question) {
         ssmlResponse.say(question);
       }
+      const expressionDict = app.data.expressionDict;
       // Format the answers
+      for (let i = 0; i < answers.length; i++) {
+        ssmlResponse.pause(TTS_DELAY_LONG);
+        let emotion = expressionDict[answers[i]];
+        if (emotion) {
+              // TODO switch to audio clip
+          ssmlResponse.say(emotion['displayName'] + ' says: ' + emotion['tone']['text']);
+        } else {
+          ssmlResponse.tell('There\'s a problem with the questions');
+        }
+      }
+
+      /*
       for (let i = 0; i < answers.length; i++) {
         const synonyms = getSynonyms(answers[i]);
         if (synonyms && synonyms.length > 0) {
@@ -496,7 +502,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
             ssmlResponse.say(`${synonym}, `);
           }
         }
-      }
+      } */
       ssmlResponse.pause(TTS_DELAY);
       ssmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_DING), 'ding');
       app.ask(ssmlResponse.toString(), selectInputPrompts());
@@ -561,7 +567,6 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
       }));
       if (chips.length === 0) {
         askQuestionAudioOnly();
-        return;
       }
       if (question) {
         questionSsmlResponse.say(question);
@@ -693,6 +698,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
 
     const selectedAnswers = app.data.selectedAnswers;
     const correctAnswer = parseInt(app.data.correctAnswer);
+    const expressionDict = app.data.expressionDict;
     gameLength = parseInt(app.data.gameLength);
     let score = parseInt(app.data.score);
 
@@ -768,7 +774,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
         ssmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_INCORRECT), 'incorrect');
         if (synonyms && synonyms.length > 0) {
           ssmlResponse.say(`${getRandomPrompt(PROMPT_TYPES.WRONG_ANSWER_PROMPTS_1)} ${
-            sprintf(getRandomPrompt(PROMPT_TYPES.WRONG_ANSWER_PROMPTS_2), synonyms[0])}`);
+            sprintf(getRandomPrompt(PROMPT_TYPES.WRONG_ANSWER_PROMPTS_2), expressionDict[selectedAnswers[correctAnswer]]['displayName'])}`);
         } else {
           ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.WRONG_ANSWER_PROMPTS_1));
         }
@@ -840,6 +846,16 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
         app.tell(ssmlResponse.toString());
       }
     };
+
+    // Map display name to emotion
+    const expressionDict = app.data.expressionDict;
+    for (let i = 0; i < selectedAnswers.length; i++) {
+      let currentExpression = expressionDict[selectedAnswers[i]];
+      if (utils.compareStrings(currentExpression['displayName'], app.getRawInput())) {
+        valueIntent(app, i + 1, null);
+        return;
+      }
+    }
 
     // Try fuzzy and partial matching against the answers
     const rawInput = app.getRawInput().trim();

@@ -55,6 +55,10 @@ const MAIN_INTENT = 'game.start';
 const VALUE_INTENT = 'game.choice.value';
 const UNKNOWN_INTENT = 'game.unknown';
 const REPEAT_INTENT = 'game.question.repeat';
+const CHOOSE_MODE_INTENT = 'game.choose.mode';
+const MODE_ARGUMENT = 'game_mode';
+const MODE_VALUE_TONE = 'tone';
+const MODE_VALUE_FACE = 'face';
 const SCORE_INTENT = 'game.score';
 const HELP_INTENT = 'game.help';
 const QUIT_INTENT = 'game.quit';
@@ -444,12 +448,41 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
               ssmlResponse.say(sprintf(getRandomPrompt(PROMPT_TYPES.GREETING_PROMPTS_2), GAME_TITLE));
             }
             ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.INTRODUCTION_PROMPTS));
-            ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
             ssmlResponse.pause(TTS_DELAY);
-            askQuestion(ssmlResponse, questionPrompt, selectedAnswers);
+            ssmlResponse.say('Which game do you want to try? Facial expressions or tone of voice?');
+            app.ask(ssmlResponse.toString(), selectInputPrompts());
+
+            app.ask(app
+            .buildRichResponse()
+            .addSimpleResponse(ssmlResponse.toString())
+            .addSuggestions(['facial expressions', 'tone']), selectInputPrompts());
+            // ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
+            // askQuestion(ssmlResponse, questionPrompt, selectedAnswers);
           }
         });
       });
+  };
+
+  const chooseMode = (app) => {
+    logger.info(logObject('trivia', 'modeChoose', {
+      info: 'Handling choose mode intent'
+    }));
+
+    let selectedMode = app.getArgument(MODE_ARGUMENT);
+    if (selectedMode !== MODE_VALUE_TONE &&
+        selectedMode !== MODE_VALUE_FACE) {
+      unknownIntent(app, true);
+      return;
+    }
+
+    const ssmlResponse = new Ssml();
+    ssmlResponse.say('Great, you chose ' + selectedMode + '.');
+
+    if (!app.data.mode) {
+      ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
+    }
+    app.data.mode = selectedMode;
+    askQuestion(ssmlResponse, app.data.questionPrompt, app.data.selectedAnswers);
   };
 
   // Utility to create the prompt to ask a question
@@ -507,7 +540,8 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
       ssmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_DING), 'ding');
       app.ask(ssmlResponse.toString(), selectInputPrompts());
     };
-    if (hasScreen) {
+    const mode = app.data.mode;
+    if (hasScreen && MODE_VALUE_FACE === mode) {
       logger.debug(logObject('trivia', 'askQuestion', {
         info: 'hasScreen'
       }));
@@ -542,7 +576,6 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
       } else {
         app.tell(richResponse);
       }
-
       return;
       // OLD ----------------------------
       const chips = [];
@@ -620,6 +653,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
     const sessionQuestions = app.data.sessionQuestions;
     const answers = app.data.sessionAnswers;
     const expressionDict = app.data.expressionDict;
+    const mode = app.data.mode;
     gameLength = parseInt(app.data.gameLength);
     let currentQuestion = parseInt(app.data.currentQuestion);
     const score = parseInt(app.data.score);
@@ -679,6 +713,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
         app.data.questionPrompt = questionPrompt;
         app.data.fallbackCount = 0;
         app.data.expressionDict = expressionDict;
+        app.data.mode = mode;
         app.data.currentQuestion = currentQuestion;
         app.data.score = score;
         askQuestion(ssmlResponse, questionPrompt, selectedAnswers);
@@ -1379,6 +1414,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
 
   const actionMap = new Map();
   actionMap.set(MAIN_INTENT, mainIntent);
+  actionMap.set(CHOOSE_MODE_INTENT, chooseMode);
   actionMap.set(VALUE_INTENT, valueIntent);
   actionMap.set(UNKNOWN_INTENT, unknownIntent);
   actionMap.set(REPEAT_INTENT, repeatIntent);

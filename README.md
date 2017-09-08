@@ -11,9 +11,9 @@ Based off of [Google api.ai trivia game](https://github.com/actions-on-google/ap
 1. Click *Save* to save the project.
 1. Click on the gear icon to see the project settings.
 1. Select *Export and Import*.
-1. Select *Restore from zip*. Follow the directions to restore from the `TriviaGame.zip` file in this repo.
+1. Select *Restore from zip*. Follow the directions to restore from the `expressions-on-google.zip` file in this repo.
 1. Deploy the fulfillment webhook provided in the `functions` folder using [Google Cloud Functions for Firebase](https://firebase.google.com/docs/functions/) and the static resources needed by the project using [Firebase Hosting](https://firebase.google.com/docs/hosting/):
-    1. Open the file `functions/index.js` and find the declaration of the `HOSTING_URL` constant at the top. Replace the '<YOUR_HOSTING_URL>' placeholder with the Project ID of the Firebase project, that you can find in the general settings page in the Firebase Console. The final value of `HOSTING_URL` should look like `https://triviagame-12345.firebaseapp.com`.
+    1. Open the file `functions/index.js` and find the declaration of the `HOSTING_URL` constant at the top. Replace the '<YOUR_HOSTING_URL>' placeholder with the Project ID of the Firebase project, that you can find in the general settings page in the Firebase Console. The final value of `HOSTING_URL` should look like `https://expressions-12345.firebaseapp.com`.
     1. Follow the instructions to [install the Firebase CLI](https://firebase.google.com/docs/hosting/quickstart#install-the-firebase-cli).
     1. Run `firebase init`, and select to configure `Hosting` and `Functions`. Select the project you've previously created in the Actions on Google Console as default project. In the configuration wizard, accept all the default choices.
     1. Edit the database data with questions (questions.json) and prompts (prompts.json). Generate a private key using Firebase Settings/Service Accounts, and edit `functions/database.js` with the path to the JSON cert file. Now populate the database: `node database.js`

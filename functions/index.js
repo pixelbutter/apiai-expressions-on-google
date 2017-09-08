@@ -96,7 +96,7 @@ const TTS_DELAY_LONG = '900ms';
 const MAX_PREVIOUS_QUESTIONS = 100;
 const SUGGESTION_CHIPS_MAX_TEXT_LENGTH = 25;
 const SUGGESTION_CHIPS_MAX = 8;
-const GAME_TITLE = 'The Fun Trivia Game';
+const GAME_TITLE = 'Face Tone';
 const QUESTIONS_PER_GAME = 4;
 
 // Firebase data keys
@@ -449,18 +449,33 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
             }
             ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.INTRODUCTION_PROMPTS));
             ssmlResponse.pause(TTS_DELAY);
-            ssmlResponse.say('Which game do you want to try? Facial expressions or tone of voice?');
-            app.ask(ssmlResponse.toString(), selectInputPrompts());
 
-            app.ask(app
-            .buildRichResponse()
-            .addSimpleResponse(ssmlResponse.toString())
-            .addSuggestions(['facial expressions', 'tone']), selectInputPrompts());
-            // ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
-            // askQuestion(ssmlResponse, questionPrompt, selectedAnswers);
+            if (hasScreen) {
+              askForMode(app, ssmlResponse, selectInputPrompts());
+            } else {
+              app.data.mode = MODE_VALUE_TONE;
+              ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
+              askQuestion(ssmlResponse, questionPrompt, selectedAnswers);
+            }
           }
         });
       });
+  };
+
+  const askForMode = (app, ssmlResponse, selectedInputPrompt) => {
+    logger.info(logObject('trivia', 'askForMode', {
+      info: 'Prompting user to choose mode'
+    }));
+
+    ssmlResponse.say('Which game do you want to try? Facial expressions or tone of voice?');
+    if (hasScreen) {
+      app.ask(app.buildRichResponse()
+              .addSimpleResponse(ssmlResponse.toString())
+              .addSuggestions([MODE_VALUE_FACE, MODE_VALUE_TONE]),
+          selectInputPrompts());
+    } else {
+      app.ask(ssmlResponse.toString(), selectInputPrompts());
+    }
   };
 
   const chooseMode = (app) => {
@@ -476,12 +491,22 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
     }
 
     const ssmlResponse = new Ssml();
-    ssmlResponse.say('Great, you chose ' + selectedMode + '.');
 
-    if (!app.data.mode) {
-      ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
+    if (hasScreen) {
+      ssmlResponse.say('Great, you chose ' + selectedMode + '.');
+
+      if (!app.data.mode) {
+        ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
+      }
+      app.data.mode = selectedMode;
+    } else {
+      ssmlResponse.say('Sorry, but facial expressions are not supported on this device.');
+      if (!app.data.mode) {
+        ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
+      }
+      app.data.mode = MODE_VALUE_TONE;
     }
-    app.data.mode = selectedMode;
+
     askQuestion(ssmlResponse, app.data.questionPrompt, app.data.selectedAnswers);
   };
 
@@ -545,12 +570,9 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
       logger.debug(logObject('trivia', 'askQuestion', {
         info: 'hasScreen'
       }));
-      // Use two chat bubbles for intro and question
-      // Use suggestion chips for answers
       const questionSsmlResponse = new Ssml();
       const expressionDict = app.data.expressionDict;
 
-      // NEW ----------------------------
       questionSsmlResponse.say(question);
       questionSsmlResponse.pause(TTS_DELAY);
       questionSsmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_DING), 'ding');
@@ -575,64 +597,6 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
         app.askWithCarousel(richResponse, carousel);
       } else {
         app.tell(richResponse);
-      }
-      return;
-      // OLD ----------------------------
-      const chips = [];
-      // Use a list to show the answers if they don't meet the
-      // suggestion chips requirements:
-      // https://developers.google.com/actions/app/responses#suggestion-chip
-      let useList = answers.length > SUGGESTION_CHIPS_MAX;
-      for (let i = 0; i < answers.length; i++) {
-        let value = answers[i];
-        const synonyms = getSynonyms(answers[i]);
-        if (synonyms && synonyms.length > 0) {
-          value = synonyms[0].trim();
-        }
-        if (value.length > SUGGESTION_CHIPS_MAX_TEXT_LENGTH) {
-          useList = true;
-        }
-        chips.push(value);
-      }
-      logger.debug(logObject('trivia', 'askQuestion', {
-        info: 'hasScreen',
-        chips: JSON.stringify(chips)
-      }));
-      if (chips.length === 0) {
-        askQuestionAudioOnly();
-      }
-      if (question) {
-        questionSsmlResponse.say(question);
-      }
-      questionSsmlResponse.pause(TTS_DELAY);
-      questionSsmlResponse.audio(getRandomAudio(AUDIO_TYPES.AUDIO_DING), 'ding');
-      if (useList) {
-        logger.debug(logObject('trivia', 'askQuestion', {
-          info: 'askQuestion: list'
-        }));
-        const list = app.buildList();
-        for (let i = 0; i < chips.length; i++) {
-          const chip = chips[i];
-          list.addItems(app.buildOptionItem(chip).setTitle(chip));
-        }
-        const richResponse = app.buildRichResponse()
-          .addSimpleResponse(ssmlResponse.toString())
-          .addSimpleResponse(questionSsmlResponse.toString());
-        logger.debug(logObject('trivia', 'askQuestion', {
-          info: 'askQuestion: list',
-          richResponse: JSON.stringify(richResponse),
-          list: JSON.stringify(list)
-        }));
-        app.askWithList(richResponse, list);
-      } else {
-        logger.debug(logObject('trivia', 'askQuestion', {
-          info: 'askQuestion: suggestion chips'
-        }));
-        app.ask(app
-          .buildRichResponse()
-          .addSimpleResponse(ssmlResponse.toString())
-          .addSimpleResponse(questionSsmlResponse.toString())
-          .addSuggestions(chips));
       }
     } else {
       logger.debug(logObject('trivia', 'askQuestion', {
@@ -1380,7 +1344,11 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
 
     const ssmlResponse = new Ssml();
     ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.REPEAT_PROMPTS));
-    askQuestion(ssmlResponse, app.data.questionPrompt, app.data.selectedAnswers);
+    if (hasScreen && !app.data.mode) {
+      askForMode(app, ssmlResponse, selectInputPrompts());
+    } else {
+      askQuestion(ssmlResponse, app.data.questionPrompt, app.data.selectedAnswers);
+    }
   };
 
   // Handle multi-modal suggestion chips selection

@@ -4,6 +4,7 @@
     <list default="true" id="08938021-2a9e-426d-9656-dac3603bd7e3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions/index.js" afterPath="$PROJECT_DIR$/functions/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions/utils.js" afterPath="$PROJECT_DIR$/functions/utils.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,143 +14,107 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.82021606">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="questions.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/functions/data/questions.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1215">
-                  <caret line="81" column="28" lean-forward="false" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="teacherPrompts.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/functions/data/teacherPrompts.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="37" column="236" lean-forward="false" selection-start-line="37" selection-start-column="236" selection-end-line="37" selection-end-column="236" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="database.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/functions/database.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="19" column="28" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="triviaBotPrompts.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/functions/data/triviaBotPrompts.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="114" lean-forward="true" selection-start-line="15" selection-start-column="114" selection-end-line="15" selection-end-column="114" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/functions/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="213">
-                  <caret line="813" column="82" lean-forward="false" selection-start-line="813" selection-start-column="80" selection-end-line="813" selection-end-column="82" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="queenAudio.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/functions/data/queenAudio.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="teacherAudio.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/functions/data/teacherAudio.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="queenPrompts.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/functions/data/queenPrompts.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="365">
-                  <caret line="39" column="144" lean-forward="false" selection-start-line="39" selection-start-column="144" selection-end-line="39" selection-end-column="144" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/functions/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="947" column="48" lean-forward="true" selection-start-line="947" selection-start-column="48" selection-end-line="947" selection-end-column="48" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/functions/utils.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="512">
-                  <caret line="218" column="24" lean-forward="true" selection-start-line="218" selection-start-column="24" selection-end-line="218" selection-end-column="24" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="questions.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/data/questions.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="81" column="28" lean-forward="false" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/utils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teacherPrompts.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/data/teacherPrompts.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="37" column="236" lean-forward="false" selection-start-line="37" selection-start-column="236" selection-end-line="37" selection-end-column="236" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/database.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="19" column="28" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="triviaBotPrompts.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/data/triviaBotPrompts.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="114" lean-forward="false" selection-start-line="15" selection-start-column="114" selection-end-line="15" selection-end-column="114" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/functions/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="661">
+              <caret line="507" column="40" lean-forward="true" selection-start-line="507" selection-start-column="40" selection-end-line="507" selection-end-column="40" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="queenAudio.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/data/queenAudio.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teacherAudio.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/data/teacherAudio.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="queenPrompts.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/data/queenPrompts.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="39" column="144" lean-forward="false" selection-start-line="39" selection-start-column="144" selection-end-line="39" selection-end-column="144" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>synonyms</find>
-      <find>WRONG_</find>
-      <find>choose.</find>
-      <find>answer</find>
-      <find>argument</find>
-      <find>choosemo</find>
-      <find>MODE_TONE_CONTEXT</find>
-      <find>mainintent</find>
-      <find>app.ask</find>
-      <find>ssmlResponse.</find>
-      <find>chips</find>
-      <find>addSuggestions</find>
-      <find>askquestion</find>
-      <find>getContext</find>
-      <find>app.data.</find>
       <find>expressionDict</find>
       <find>selectInputPrompts</find>
       <find>choosemode</find>
       <find>ssmlResponse</find>
-      <find>great</find>
       <find>REPEAT_PROMPTS</find>
       <find>help</find>
       <find>askForMode</find>
@@ -160,6 +125,22 @@
       <find>true</find>
       <find>choice</find>
       <find>')</find>
+      <find>askwith</find>
+      <find>suggestions</find>
+      <find>score</find>
+      <find>askwithca</find>
+      <find>great</find>
+      <find>repeat</find>
+      <find>facial expressions or</find>
+      <find>'</find>
+      <find>+</find>
+      <find>do you</find>
+      <find>getsynonyms</find>
+      <find>tell</find>
+      <find>askformode</find>
+      <find>addsuggestions</find>
+      <find>askwithcaro</find>
+      <find>great you</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,9 +159,10 @@
       <list>
         <option value="$PROJECT_DIR$/functions/database.js" />
         <option value="$PROJECT_DIR$/functions/data/questions.json" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/functions/utils.js" />
         <option value="$PROJECT_DIR$/functions/index.js" />
       </list>
     </option>
@@ -207,10 +189,10 @@
     <handled-path value="$PROJECT_DIR$/functions/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="840" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="619" />
     <option name="y" value="23" />
-    <option name="width" value="840" />
+    <option name="width" value="1061" />
     <option name="height" value="953" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -244,7 +226,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -252,29 +237,10 @@
               <item name="apiai-trivia-game-nodejs" type="b2602c69:ProjectViewProjectNode" />
               <item name="apiai-trivia-game-nodejs" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="apiai-trivia-game-nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="apiai-trivia-game-nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="apiai-trivia-game-nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="apiai-trivia-game-nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name="functions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="apiai-trivia-game-nodejs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="apiai-trivia-game-nodejs" type="462c0819:PsiDirectoryNode" />
-              <item name="functions" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -298,6 +264,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/functions/data" />
     </key>
   </component>
@@ -412,16 +379,16 @@
       <workItem from="1504564091823" duration="133000" />
       <workItem from="1504564227484" duration="7066000" />
       <workItem from="1504571860942" duration="15790000" />
-      <workItem from="1504746845333" duration="11187000" />
+      <workItem from="1504746845333" duration="12066000" />
+      <workItem from="1504921011743" duration="3683000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36983000" />
+    <option name="totallyTimeSpent" value="41545000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="953" extended-state="6" />
-    <editor active="true" />
+    <frame x="619" y="23" width="1061" height="953" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -432,12 +399,12 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44755244" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4020979" sideWeight="0.49656358" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32517484" sideWeight="0.49656358" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20879121" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30402932" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47785547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3962704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -490,7 +457,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -528,7 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-16">
           <caret line="160" column="51" lean-forward="false" selection-start-line="160" selection-start-column="51" selection-end-line="160" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -544,7 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -601,7 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -609,7 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -727,7 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -735,7 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -789,16 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="180">
-            <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -810,7 +763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="492">
           <caret line="180" column="21" lean-forward="true" selection-start-line="180" selection-start-column="21" selection-end-line="180" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -818,7 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -826,15 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/functions/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="218" column="24" lean-forward="true" selection-start-line="218" selection-start-column="24" selection-end-line="218" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -856,7 +798,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/data/questions.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
+        <state relative-caret-position="0">
           <caret line="81" column="28" lean-forward="false" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
           <folding />
         </state>
@@ -864,7 +806,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/data/queenPrompts.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
+        <state relative-caret-position="585">
           <caret line="39" column="144" lean-forward="false" selection-start-line="39" selection-start-column="144" selection-end-line="39" selection-end-column="144" />
           <folding />
         </state>
@@ -872,7 +814,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/data/teacherPrompts.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
+        <state relative-caret-position="555">
           <caret line="37" column="236" lean-forward="false" selection-start-line="37" selection-start-column="236" selection-end-line="37" selection-end-column="236" />
           <folding />
         </state>
@@ -881,15 +823,34 @@
     <entry file="file://$PROJECT_DIR$/functions/data/triviaBotPrompts.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="114" lean-forward="true" selection-start-line="15" selection-start-column="114" selection-end-line="15" selection-end-column="114" />
+          <caret line="15" column="114" lean-forward="false" selection-start-line="15" selection-start-column="114" selection-end-line="15" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="375">
+            <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="813" column="82" lean-forward="false" selection-start-line="813" selection-start-column="80" selection-end-line="813" selection-end-column="82" />
+        <state relative-caret-position="661">
+          <caret line="507" column="40" lean-forward="true" selection-start-line="507" selection-start-column="40" selection-end-line="507" selection-end-column="40" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

@@ -57,8 +57,6 @@ const UNKNOWN_INTENT = 'game.unknown';
 const REPEAT_INTENT = 'game.question.repeat';
 const CHOOSE_MODE_INTENT = 'game.choose.mode';
 const MODE_ARGUMENT = 'game_mode';
-const MODE_VALUE_TONE = 'tone';
-const MODE_VALUE_FACE = 'face';
 const SCORE_INTENT = 'game.score';
 const HELP_INTENT = 'game.help';
 const QUIT_INTENT = 'game.quit';
@@ -97,6 +95,10 @@ const MAX_PREVIOUS_QUESTIONS = 100;
 const SUGGESTION_CHIPS_MAX_TEXT_LENGTH = 25;
 const SUGGESTION_CHIPS_MAX = 8;
 const GAME_TITLE = 'Face Tone';
+const MODE_VALUE_TONE = 'tone';
+const MODE_DISPLAY_NAME_TONE = 'Tone of voice';
+const MODE_VALUE_FACE = 'face';
+const MODE_DISPLAY_NAME_FACE = 'Facial expressions';
 const QUESTIONS_PER_GAME = 4;
 
 // Firebase data keys
@@ -467,11 +469,11 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
       info: 'Prompting user to choose mode'
     }));
 
-    ssmlResponse.say('Which game do you want to try? Facial expressions or tone of voice?');
+    ssmlResponse.say(`Which game would you like to try? ${MODE_DISPLAY_NAME_FACE}, or ${MODE_DISPLAY_NAME_TONE.toLowerCase()}?`);
     if (hasScreen) {
       app.ask(app.buildRichResponse()
               .addSimpleResponse(ssmlResponse.toString())
-              .addSuggestions([MODE_VALUE_FACE, MODE_VALUE_TONE]),
+              .addSuggestions([MODE_DISPLAY_NAME_FACE, MODE_DISPLAY_NAME_TONE]),
           selectInputPrompts());
     } else {
       app.ask(ssmlResponse.toString(), selectInputPrompts());
@@ -493,7 +495,8 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
     const ssmlResponse = new Ssml();
 
     if (hasScreen) {
-      ssmlResponse.say('Great, you chose ' + selectedMode + '.');
+      ssmlResponse.say(`Great, we'll play with ${selectedMode === MODE_VALUE_TONE
+          ? MODE_DISPLAY_NAME_TONE.toLowerCase() : MODE_DISPLAY_NAME_FACE.toLowerCase()}.`);
 
       if (!app.data.mode) {
         ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.FIRST_ROUND_PROMPTS));
@@ -540,7 +543,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
         let emotion = expressionDict[answers[i]];
         if (emotion) {
               // TODO switch to audio clip
-          ssmlResponse.say(emotion['displayName'] + ' says: ' + emotion['tone']['text']);
+          ssmlResponse.say(`${emotion['displayName']} says: ${emotion['tone']['text']}`);
         } else {
           ssmlResponse.tell('There\'s a problem with the questions');
         }
@@ -594,6 +597,7 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
             .addSimpleResponse(questionSsmlResponse.toString());
 
       if (carousel) {
+        richResponse.addSuggestions([utils.VOICE_ONLY, utils.HELP, utils.SCORE]);
         app.askWithCarousel(richResponse, carousel);
       } else {
         app.tell(richResponse);
@@ -914,7 +918,11 @@ exports.triviaGame = functions.https.onRequest((request, response) => {
     app.data.fallbackCount = 0;
     const ssmlResponse = new Ssml();
     ssmlResponse.say(getRandomPrompt(PROMPT_TYPES.REPEAT_PROMPTS));
-    askQuestion(ssmlResponse, app.data.questionPrompt, app.data.selectedAnswers);
+    if (!app.data.mode && hasScreen) {
+      askForMode(app, ssmlResponse, selectInputPrompts());
+    } else {
+      askQuestion(ssmlResponse, app.data.questionPrompt, app.data.selectedAnswers);
+    }
   };
 
   // Handle user score request

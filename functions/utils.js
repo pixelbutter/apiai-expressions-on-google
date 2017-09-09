@@ -27,6 +27,9 @@ const YES = 'yes';
 const NO = 'no';
 const TRUE = 'true';
 const FALSE = 'false';
+const HELP = 'Help';
+const VOICE_ONLY = 'Voice only';
+const SCORE = 'Current score';
 
 const SEPARATOR = '|';
 const SPACE = ' ';
@@ -213,6 +216,9 @@ module.exports = {
   NO: NO,
   FALSE: FALSE,
   TRUE: TRUE,
+  HELP: HELP,
+  VOICE_ONLY: VOICE_ONLY,
+  SCORE: SCORE,
   isTrueFalse: isTrueFalse,
   fuzzyMatch: fuzzyMatch,
   compareStrings: compareStrings,
